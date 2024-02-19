@@ -31,6 +31,7 @@ pkgbase = webex-bin
 	depends = xcb-util-renderutil
 	depends = xcb-util-wm
 	depends = xdg-utils
+        depends = xwaylandvideobridge
 	options = !strip
 	source = webex-bin-43.11.0.27795.deb::https://binaries.webex.com/WebexDesktop-Ubuntu-Gold/20231108131957/Webex.deb
 	source = webex.xml

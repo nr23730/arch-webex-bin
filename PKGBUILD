@@ -31,7 +31,8 @@ depends=('alsa-lib'
          'xcb-util-keysyms'
          'xcb-util-renderutil'
          'xcb-util-wm'
-         'xdg-utils')
+         'xdg-utils'
+         'xwaylandvideobridge')
 source=("$pkgname-$pkgver.deb::https://binaries.webex.com/WebexDesktop-Ubuntu-Gold/20231108131957/Webex.deb"
         'webex.xml'
         'https://archive.archlinux.org/packages/l/libsecret/libsecret-0.20.4-1-x86_64.pkg.tar.zst')
@@ -53,6 +54,7 @@ package() {
     cp -dp --no-preserve=ownership ../usr/lib/libsecret-1.so* "$pkgdir/opt/Webex/lib"
 
     mkdir -p "$pkgdir/usr/share/applications/"
+    sed -i 's/Exec=/Exec=env XDG_SESSION_TYPE=x11 webex /g' "$pkgdir/opt/Webex/bin/webex.desktop"
     mv "$pkgdir/opt/Webex/bin/webex.desktop" "$pkgdir/usr/share/applications/"
 
     mkdir -p "$pkgdir/usr/share/mime/packages/"
